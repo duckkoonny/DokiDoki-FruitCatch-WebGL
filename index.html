@@ -10,7 +10,7 @@
 html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#092822; }
 #unity-container { position:fixed !important; inset:0 !important; transform:none !important; width:100% !important; height:100% !important; }
 #unity-fullscreen-container { width:100% !important; height:100% !important; }
-#unity-canvas { display:block; width:100% !important; height:100% !important; }
+#unity-canvas { display:block; position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width:min(100vw, 177.777778vh) !important; height:min(100vh, 56.25vw) !important; }
 #unity-footer { position:fixed; bottom:12px; right:12px; width:38px; height:38px; z-index:5; }
 #unity-webgl-logo, #unity-logo-title-footer, #unity-build-title { display:none; }
 #unity-fullscreen-button { border-radius:5px; box-shadow:0 1px 5px #0008; }
