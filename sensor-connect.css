@@ -1,0 +1,15 @@
+#sensor-toggle { position:fixed; left: max(12px, env(safe-area-inset-left)); bottom: max(12px, env(safe-area-inset-bottom)); z-index:5; }
+#sensor-toggle, #sensor-panel button, #sensor-panel select { font:inherit; padding:.55rem .75rem; border:1px solid #254637; border-radius:5px; }
+#sensor-toggle, #sensor-panel button { color:#fff; background:#28483a; cursor:pointer; font-weight:650; }
+#sensor-panel button:disabled, #sensor-panel select:disabled { opacity:.48; cursor:default; }
+#sensor-panel { box-sizing:border-box; margin:auto; width:min(34rem, 94vw); max-height:88vh; overflow:auto; color:#192f26; background:#fbf8ec; border:2px solid #254637; border-radius:10px; padding:1.25rem; font:15px/1.45 system-ui,sans-serif; }
+#sensor-panel::backdrop { background:#061b15aa; }
+#sensor-panel h2 { font-size:1.35rem; margin:0; }
+#sensor-panel h3 { font-size:1rem; margin:0 0 .55rem; }
+#sensor-panel header, .sensor-row { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+#sensor-panel header { justify-content:space-between; }
+#sensor-panel section { border-top:1px solid #c9d2bf; padding-top:.85rem; margin-top:.85rem; }
+#sensor-panel p { margin:.6rem 0; }
+#sensor-panel a { color:#255342; }
+#sensor-panel .sensor-status { font-weight:650; }
+#sensor-panel .sensor-channels { font-size:.83rem; min-height:1em; }

@@ -14,11 +14,40 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
 #unity-footer { position:fixed; bottom:12px; right:12px; width:38px; height:38px; z-index:5; }
 #unity-webgl-logo, #unity-logo-title-footer, #unity-build-title { display:none; }
 #unity-fullscreen-button { border-radius:5px; box-shadow:0 1px 5px #0008; }
-</style></head>
+</style>  <link rel="stylesheet" href="sensor-connect.css">
+  </head>
   <body>
     <div id="unity-container" class="unity-desktop">
       <div id="unity-fullscreen-container">
         <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
+        <button id="sensor-toggle" type="button" aria-haspopup="dialog">Sensors</button>
+        <dialog id="sensor-panel" aria-labelledby="sensor-title">
+          <header>
+            <h2 id="sensor-title">Sensor connections</h2>
+            <button id="sensor-close" type="button" autofocus>Done</button>
+          </header>
+          <section>
+            <h3>ESP32 · Joystick, Gyro, Distance &amp; Piezo</h3>
+            <div class="sensor-row">
+              <select id="sensor-ports" aria-label="Approved serial ports"></select>
+              <button id="sensor-connect-saved" type="button">Connect</button>
+              <button id="sensor-choose" type="button">Choose COM port</button>
+              <button id="sensor-disconnect" type="button">Disconnect</button>
+            </div>
+            <p id="sensor-serial-status" class="sensor-status" role="status">ESP32 disconnected</p>
+            <p id="sensor-channels" class="sensor-channels"></p>
+            <p>Close Serial Monitor or the desktop game first. Pick your board in the browser's COM list, then choose Joystick or Gyro in the game. Distance controls the magnet in both modes. Piezo works in Joystick mode.</p>
+          </section>
+          <section>
+            <h3>ESP32-CAM · Hand gestures</h3>
+            <div class="sensor-row">
+              <button id="sensor-camera" type="button">Connect camera</button>
+              <a href="CameraBridge.zip" download>Download Windows camera helper</a>
+            </div>
+            <p id="sensor-camera-status" class="sensor-status" role="status">Camera disconnected</p>
+            <p>Start the helper and enter your camera's Wi-Fi stream URL. Then connect here, allow local network access if prompted, and select Camera in the game.</p>
+          </section>
+        </dialog>
         <div id="unity-loading-container">
           <div id="unity-loading-bar">
             <div id="unity-logo"></div>
@@ -35,6 +64,7 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
         <div id="unity-build-title">Doki Doki Fruit Catch</div>
       </div>
     </div>
+    <script src="sensor-connect.js"></script>
     <script>
       let canvas = document.querySelector("#unity-canvas");
       let fullscreenContainer = document.querySelector("#unity-fullscreen-container");
@@ -65,12 +95,12 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/site.loader.js";
+      var loaderUrl = buildUrl + "/sensors.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/site.data.unityweb",
-        frameworkUrl: buildUrl + "/site.framework.js.unityweb",
-        codeUrl: buildUrl + "/site.wasm.unityweb",
+        dataUrl: buildUrl + "/sensors.data.unityweb",
+        frameworkUrl: buildUrl + "/sensors.framework.js.unityweb",
+        codeUrl: buildUrl + "/sensors.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
 
         // If you have a custom web site structure, or want to place multiple Unity build instances on the same page,
@@ -156,3 +186,4 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
     </script>
   </body>
 </html>
+
